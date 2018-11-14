@@ -20,6 +20,11 @@ public class Receiver {
         this.log.info(hello);
     }
 
+    @RabbitHandler
+    public void process(byte[] bs) {
+        this.log.info(new String(bs));
+    }
+
     public Message receive(String key, long timeout) {
         Message message = this.rabbitTemplate.receive(key, timeout);
         return message;
